@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Cart</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle *ngIf="cartItemCount.value; else showEmptyMsg">
+        {{cartItemCount | async}} Product Added
+        <ion-button fill="none" class="ion-no-padding ion-no-margin clear-btn" (click)="clarCart()">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-card-subtitle>
+      <ng-template #showEmptyMsg>
+        <ion-card-subtitle class="ion-text-center">Your cart is empty</ion-card-subtitle>
+      </ng-template>
+    </ion-card-header>
+
+    <ion-card-content *ngIf="cartItemCount.value" class="ion-no-padding">
+      <ion-grid>
+        <ion-row class="border-top">
+          <ion-col size="6" class="border-right">
+            <ion-label>
+              Name
+            </ion-label>
+          </ion-col>
+          <ion-col size="3" class="border-right">
+            <ion-label>
+              Quantity
+            </ion-label>
+          </ion-col>
+          <ion-col size="3">
+            <ion-label>
+              Action
+            </ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngFor="let item of cart; let i = index">
+          <ion-col size="6" class="border-right">
+            <ion-text>
+              <h5>{{item.product_name}}</h5>
+            </ion-text>
+          </ion-col>
+          <ion-col size="3" class="border-right">
+            <ion-text>
+              <h5>{{item.quantity_selected}}</h5>
+            </ion-text>
+          </ion-col>
+          <ion-col size="3">
+            <div class="d-flex">
+              <ion-button class="flex-side ion-no-padding" fill="none" (click)="decreaseProductCount(item, i)">
+                <ion-icon name="remove-circle-outline"></ion-icon>
+              </ion-button>
+              <ion-text class="flex-center">
+                <h5>{{item.item_count}}</h5>
+              </ion-text>
+              <ion-button class="flex-side ion-no-padding" fill="none" (click)="increaseProductCount(item)">
+                <ion-icon name="add-circle-outline"></ion-icon>
+              </ion-button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-item lines="none">
+        <ion-button expand="block" size="default" [routerLink]="['/order']" routerLinkActive="router-link-active">
+          Request Quote</ion-button>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

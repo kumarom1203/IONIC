@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>
+      {{ shopData ?  shopData.shop_name : 'Shop Name'}}
+    </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button color="light" [routerLink]="['/cart']" routerLinkActive="router-link-active">
+        <ion-icon slot="end" name="cart"></ion-icon>
+        <ion-badge color="primary" *ngIf="cartItemCount.value">{{ cartItemCount | async }}</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list lines="full" *ngIf="shopData && shopData.product; else showEmptyMsg">
+    <ion-item *ngFor="let product of shopData.product">
+      <ion-thumbnail slot="start">
+        <ion-img src="assets/images/product.svg"></ion-img>
+      </ion-thumbnail>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12">
+            <h3>{{product.product_name}}</h3>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-item class="item-content" lines="none">
+              <ion-select placeholder="Select Quantity" interface="popover" [(ngModel)]="product.quantity_selected">
+                <ion-select-option value="0">Select Quantity</ion-select-option>
+                <ion-select-option [value]="unit" *ngFor="let unit of product.available_unit">{{unit}}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6">
+            <ion-item class="item-content" lines="none">
+              <ion-select interface="popover" [(ngModel)]="product.item_count">
+                <ion-select-option [value]="item" *ngFor="let item of itemList">{{item}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6">
+            <ion-button expand="block" (click)="addProduct(product)">Add</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+  <ng-template #showEmptyMsg>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>
+          Unable to fetch shop products. CORS policy issue
+        </ion-card-subtitle>
+      </ion-card-header>
+    </ion-card>
+  </ng-template>
+</ion-content>
