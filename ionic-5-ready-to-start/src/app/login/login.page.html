@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+  <br><br>
+  
+  <form [formGroup]="loginForm">
+
+    <ion-item>
+      <ion-label position="floating" style="font-size: 12px">USER NAME</ion-label>
+      <ion-input formControlName="user_id" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating" style="font-size: 12px">PASSWORD</ion-label>
+      <ion-input formControlName="password" type="password"></ion-input>
+    </ion-item>
+    
+    <br>
+   
+    
+    <br>
+    <ion-button (click)="doLogin()" expand="full" color="primary">Login</ion-button>
+  </form>
+
+
+</ion-content>
