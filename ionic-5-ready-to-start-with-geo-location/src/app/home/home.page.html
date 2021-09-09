@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+
+  <br>
+  <form [formGroup]="dataForm">
+
+    <table>
+      <tr>
+
+        <td>
+            <ion-input formControlName="shop_name" type="number" placeholder="Shop Mobile No" style="border: 1px solid #dad4d4;
+            margin-right: 3px;" ></ion-input>
+        </td>
+        <td>
+        
+          <ion-input formControlName="shop_code" type="text" placeholder="Shop Code" style="border: 1px solid #dad4d4;
+          margin-left: 3px; margin-right: 3px;"></ion-input>
+        </td>
+
+      </tr>
+
+
+      <tr>
+
+        <td>
+            <ion-input formControlName="latitude" type="text" readonly ></ion-input>
+        </td>
+        <td>
+        
+          <ion-input formControlName="longitude" type="text" readonly></ion-input>
+        </td>
+
+      </tr>
+
+    </table>
+    <br>
+  
+
+   
+    <ion-button (click)="submitForm()" expand="full" color="primary">Submit</ion-button>
+
+
+    <div #map id="map"></div>
+    
+    <br>
+
+    
+
+    
+  
+  </form>
+
+
+
+
+
+
+
+   
+ 
+
+
+
+    
+
+
+</ion-content>

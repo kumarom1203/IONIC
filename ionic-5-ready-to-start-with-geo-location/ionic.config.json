@@ -1,0 +1,7 @@
+{
+  "name": "geoapp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
